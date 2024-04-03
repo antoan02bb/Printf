@@ -1,31 +1,40 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aantonie <aantonie@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/02/11 23:15:32 by aantonie          #+#    #+#              #
+#    Updated: 2024/02/15 14:21:04 by aantonie         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libftprintf.a
-SRCS = ft_print_hex.c ft_printf.c ft_print_ptr.c ft_print_unsigned.c ft_print_utils.c
-INCLUDE = include
-LIBFT = libft
-SRC_DIR = src/
-OBJ_DIR = obj/
+
+SRCS = ft_print_hex.c ft_print_ptr.c ft_printf_utils.c ft_printf.c
 
 OBJ = $(SRCS:.c=.o)
-CC = cc
+
+CC = cc 
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
+all: $(NAME)
+
 $(NAME): $(OBJ)
-	make -C $(LIBFT)
-	${CC} ${CFLAGS} ${OBJ} -o ${NAME} ${INCLUDE}
+	ar rc $(NAME) $(OBJ)
+	ranlib $(NAME)
 
 %.o: %.c
-	${CC} ${CFLAGS} -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	${RM} ${OBJ}
+	rm -f $(OBJ)
 
 fclean: clean
-	${RM} ${NAME}
+	rm -f $(NAME)
 
 re: fclean all
 
-bonus: $(BONUS_OBJ) $(OBJ)
-	ar rc $(NAME) $(BONUS_OBJ) $(OBJ)
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

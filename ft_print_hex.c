@@ -6,19 +6,17 @@
 /*   By: aantonie <aantonie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 17:00:46 by aantonie          #+#    #+#             */
-/*   Updated: 2024/02/07 17:24:52 by aantonie         ###   ########.fr       */
+/*   Updated: 2024/02/12 12:10:02 by aantonie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include    "libft.h"
-#include    "ft_printf.h"
-
+#include "ft_printf.h"
 
 int	ft_hex_len(unsigned int num)
 {
 	int	length;
 
-	length = 0;
+	length = 1;
 	while (num / 16)
 	{
 		num = num / 16;
@@ -55,10 +53,4 @@ int	ft_print_hex(unsigned int num, const char format)
 	else
 		ft_put_hex(num, format);
 	return (ft_hex_len(num));
-}
-
-int	main(void)
-{
-	ft_put_hex(237, 'x');
-	return (0);
 }
